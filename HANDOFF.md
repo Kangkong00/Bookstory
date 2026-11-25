@@ -156,6 +156,20 @@
 - 검수: 자막마다 프레임을 뽑아 이어 붙여 직접 확인한다. 블라인드 검수용은 1초 간격 프레임 시트(10x3)를 쓴다.
 
 ## 8. 자료 위치
+
+**역할 분담 (대표 결정 2026-11-26)**: GitHub과 구글 드라이브를 같이 쓴다.
+
+| 어디 | 무엇 |
+|---|---|
+| **GitHub `Kangkong00/Bookstory`** (공식 작업 장소) | 기획서, 원고, 비트 시트, 프롬프트, Remotion 코드, 편집에 쓰는 사진 사본, 작업 기록, 스킬, 가편집 축소본 |
+| **구글 드라이브** | Flow 원본(캐릭터, 사진, 영상), 완성본 영상, 약 20MB를 넘는 큰 파일 |
+
+- 작업이 끝날 때마다 GitHub에 커밋하고 push한다.
+- 큰 파일은 드라이브에 두고, GitHub에는 위치만 적는다.
+
+**GitHub**
+- https://github.com/Kangkong00/Bookstory (main 브랜치)
+
 **구글 드라이브** (소유 kangsw4278@gmail.com). Claude Code에서 드라이브 연결이 없으면 대표에게 받는다.
 - 동화사업부 `1N4IxccVXcgQayjn46tVp_VBrg1998_p3` › 1. 콩쥐팥쥐 `1jzG6Rv3rUrrKrPqdOTeXyhNu57O0ta1r`
   - 1. 캐릭터 `1OuDjHN3XjdSOeks68JY2MFn2gUkHBXkY` (2026-11-24에 만든 것이 현재 캐릭터, 옛 동물은 보관 예정)
