@@ -26,3 +26,4 @@
 - `samples/`: B안 가편집 v1(720p 축소본), 자막 샘플
 - `scripts/`: 폰트 병합 등 보조 스크립트
 - `log/`: claude.ai 문서에 아직 반영하지 못한 기록
+- `.claude/skills/`: 스킬. `donghwa-shorts-planner`(기획·제작), `motion-graphic-skill`(HyperFrames 모션그래픽 인트로, 녹화 영상 편집 프롬프트 포함)
