@@ -40,7 +40,7 @@ export const shots: Shot[] = [
   {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['실금 찾기는,', '우리 담당.'], y: TOP}]},
   {img: 'v2/N14', sec: 3.5, origin: '45% 50%', caps: [{at: 0.2, dur: 1.2, name: '콩쥐', lines: ['다음 분~'], y: 1780}, {at: 1.3, dur: 2.0, name: '콩쥐', lines: ['…독 깨는 솜씨는,', '알아줘야겠네요.'], y: 1730}]},
   {img: 'v2/N16', sec: 2.4, origin: '45% 45%', caps: [{at: 0.2, dur: 2.1, name: '팥쥐', lines: ['금 안 가는 독', '있어요~!'], y: 1720}]},
-  {img: 'v2/N15', sec: 3.6, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.0, name: '계모', lines: ['이 정도는 버텨야', '쓸 만한 두꺼비지!']}]},
+  {img: 'v2/N15', sec: 3.6, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.0, name: '계모', lines: ['이 정도는 버텨야', '쓸 만한 두꺼비지!'], y: 330}]},
 ];
 const END = 1.6;
 
