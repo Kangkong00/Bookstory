@@ -36,9 +36,9 @@ export const shots: Shot[] = [
   // 결
   {img: 'v2/N10', sec: 1.6, zoom: [1.3, 1.36], origin: '35% 80%', caps: [{at: 0.05, dur: 1.5, lines: ['반년 후'], y: TOP}]},
   {img: 'v2/N11', sec: 4.0, pan: true, caps: []},
-  {img: 'v2/N12', sec: 2.2, origin: '45% 45%', caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마, 빨리 와!', '줄 길어져!']}]},
+  {img: 'v2/N12', sec: 2.2, origin: '45% 45%', caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마, 빨리 와!', '줄 길어져!'], y: 1760}]},
   {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['금 잡는 건,', '우리 담당.'], y: TOP}]},
-  {img: 'v2/N14', sec: 2.8, origin: '45% 50%', caps: [{at: 0.5, dur: 2.2, name: '콩쥐', lines: ['다음 분~']}]},
+  {img: 'v2/N14', sec: 2.8, origin: '45% 50%', caps: [{at: 0.5, dur: 2.2, name: '콩쥐', lines: ['다음 분~'], y: 1780}]},
 ];
 const END = 1.6;
 
