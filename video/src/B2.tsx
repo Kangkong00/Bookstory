@@ -5,7 +5,7 @@ import {random} from 'remotion';
 
 // 1화 「콩쥐팥쥐뎐」 v2(두꺼비 근무 일지) 사진 가편집. 비트 시트: plan/ep01_비트시트_v2.md (v2.1)
 export const FPS = 24;
-const XF = 6; // 컷 사이 겹침(프레임)
+const XF = 4; // 컷 사이 겹침(프레임)
 const s = (sec: number) => Math.round(sec * FPS);
 
 type Cap = {at: number; dur: number; lines: string[]; name?: string; big?: boolean; y?: number};
@@ -14,7 +14,7 @@ type Shot = {img: string; sec: number; zoom?: [number, number]; origin?: string;
 const TOP = 330; // 그림 아래쪽에 주인공이 있을 때 자막을 위로
 export const shots: Shot[] = [
   // 기: 원작 그대로
-  {img: 'b/B01', sec: 3.0, origin: '60% 55%', tag: {text: '콩쥐', x: 64, y: 20}, caps: [{at: 0.5, dur: 2.45, lines: ['그 독 밑 두꺼비는,', '그 뒤로 어떻게 됐을까?']}]},
+  {img: 'b/B01', sec: 3.0, origin: '60% 55%', tag: {text: '콩쥐', x: 64, y: 20}, caps: []},
   {img: 'b/B02', sec: 3.2, origin: '35% 70%', tag: {text: '두꺼비', x: 37, y: 60}, caps: [{at: 0.2, dur: 2.9, lines: ['밑 빠진 독엔 두꺼비가,'], y: TOP}]},
   {img: 'b/B03', sec: 2.2, origin: '50% 75%', caps: [{at: 0.15, dur: 2.0, lines: ['벼 한 섬엔 참새가,']}]},
   {img: 'b/B04', sec: 2.2, origin: '35% 55%', caps: [{at: 0.15, dur: 2.0, lines: ['돌밭엔 검은 소가.']}]},
@@ -24,23 +24,23 @@ export const shots: Shot[] = [
   {img: 'v2/N01', sec: 3.4, zoom: [1.25, 1.35], origin: '55% 22%', tag: {text: '계모', x: 52, y: 7}, caps: [{at: 0.5, dur: 2.8, name: '계모', lines: ['오호?', '그렇단 말이지?']}]},
   {img: 'v2/N02', sec: 3.0, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.3, dur: 2.6, name: '계모', lines: ['어디까지 고치나 보자.'], y: 1720}]},
   // 전
-  {img: 'v2/N03', sec: 3.0, zoom: [1.0, 1.1], origin: '50% 70%', caps: [{at: 0.6, dur: 2.3, name: '두꺼비', lines: ['…셋?'], big: true, y: TOP}]},
+  {img: 'v2/N03', sec: 3.0, zoom: [1.0, 1.1], origin: '50% 70%', caps: [{at: 0.6, dur: 2.3, name: '두꺼비', lines: ['…금 간 독이, 셋?'], y: TOP}]},
   {img: 'v2/N04', sec: 3.4, caps: [{at: 0.3, dur: 3.0, name: '두꺼비', lines: ['사촌, 육촌까지 불렀다.'], y: TOP}]},
   {img: 'v2/N05', sec: 3.4, origin: '55% 40%', caps: [{at: 0.3, dur: 3.0, name: '두꺼비', lines: ['톡톡…', '여기 금 갔네.']}]},
   // 감정의 바닥
   {img: 'v2/N06', sec: 2.8, zoom: [1.0, 1.1], origin: '50% 72%', sat: [1.0, 0.75], snow: true, caps: [{at: 0.4, dur: 2.3, name: '두꺼비', lines: ['겨울에도…', '퇴근이 없다.'], y: TOP}]},
-  {img: 'v2/N07', sec: 3.0, zoom: [1.05, 1.15], origin: '50% 45%', caps: [{at: 0.6, dur: 2.3, name: '콩쥐', lines: ['…다 나 때문이야.']}]},
+  {img: 'v2/N07', sec: 3.0, zoom: [1.05, 1.15], origin: '50% 45%', caps: [{at: 0.6, dur: 2.3, name: '콩쥐', lines: ['…고생 많았지.']}]},
   // 결심(모든 편 공통 장면)
   {img: 'v2/N08', sec: 1.8, zoom: [1.1, 1.2], origin: '60% 40%', caps: [], sfx: 'intro/ting.wav'},
   {img: 'v2/N09', sec: 3.0, zoom: [1.12, 1.0], origin: '50% 40%', caps: [{at: 0.5, dur: 2.4, name: '콩쥐', lines: ['안 깨지는 독이면…', '너희도 퇴근하잖아!'], y: 1680}]},
   // 결
   {img: 'v2/N10', sec: 2.4, zoom: [1.3, 1.38], origin: '35% 80%', caps: [{at: 0.05, dur: 2.3, lines: ['반년 후,', '금 안 가는 독, 소문이 났다.'], y: TOP}]},
-  {img: 'v2/N11', sec: 4.0, pan: true, caps: []},
-  {img: 'v2/N12', sec: 2.2, origin: '45% 45%', caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마, 빨리 와!', '줄 길어져!'], y: 1760}]},
-  {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['실금 찾기는,', '우리 담당.'], y: TOP}]},
-  {img: 'v2/N14', sec: 3.5, origin: '45% 50%', caps: [{at: 0.2, dur: 1.2, name: '콩쥐', lines: ['다음 분~'], y: 1780}, {at: 1.3, dur: 2.0, name: '콩쥐', lines: ['…독 깨는 솜씨는,', '알아줘야겠네요.'], y: 1730}]},
-  {img: 'v2/N16', sec: 2.4, origin: '45% 45%', caps: [{at: 0.2, dur: 2.1, name: '팥쥐', lines: ['금 안 가는 독', '있어요~!'], y: 1720}]},
-  {img: 'v2/N15', sec: 3.6, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.0, name: '계모', lines: ['이 정도는 버텨야', '쓸 만한 두꺼비지!'], y: 330}]},
+  {img: 'v2/N11', sec: 4.0, pan: true, caps: [{at: 0.3, dur: 2.6, name: '손님들', lines: ['금 안 가는 독', '여기 있다며?'], y: TOP}]},
+  {img: 'v2/N12', sec: 2.2, origin: '45% 45%', tag: {text: '팥쥐', x: 56, y: 30}, caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마! 우리 집 독', '다 금 갔잖아! 빨리 와!'], y: 1760}]},
+  {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['실금 찾는 건,', '우리가 제일 잘하지.'], y: TOP}]},
+  {img: 'v2/N14', sec: 3.5, origin: '45% 50%', caps: [{at: 0.2, dur: 1.2, name: '콩쥐', lines: ['다음 분~'], y: 1780}, {at: 1.5, dur: 1.9, name: '콩쥐', lines: ['이 금… 다 어머니 솜씨죠?'], y: 1780}]},
+  {img: 'v2/N16', sec: 2.4, origin: '45% 45%', tag: {text: '호객 담당 팥쥐', x: 52, y: 31}, caps: [{at: 0.2, dur: 2.1, name: '팥쥐', lines: ['금 안 가는 독', '있어요~!'], y: 1720}]},
+  {img: 'v2/N15', sec: 3.6, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.0, name: '면접관 계모', lines: ['실금 하나 못 잡으면…', '탈락!'], y: 330}]},
 ];
 const END = 1.6;
 
@@ -186,6 +186,7 @@ export const B2: React.FC = () => {
         </Sequence>
       ))}
       <Sequence from={0} durationInFrames={INTRO_F}><Intro title={'콩쥐\n팥쥐뎐'} seal="엇" /></Sequence>
+      <Sequence from={s(0.7)} durationInFrames={s(3.9)}><CapB c={{at: 0, dur: 3.9, lines: ['그 독 밑 두꺼비는,', '그 뒤로 어떻게 됐을까?'], y: 1660}} len={s(3.9)} /></Sequence>
       <Sequence from={endStart} durationInFrames={s(END)}>
         <End />
         <Sequence from={s(0.25)}><Audio src={staticFile('intro/stamp.wav')} volume={0.9} /></Sequence>
