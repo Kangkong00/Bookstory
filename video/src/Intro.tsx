@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 
 // 엇이야기 공통 인트로: 한지 + 큰 붓글씨 제목이 징 소리와 함께 찍힘 + 붉은 직인 + 먼지 → 서서히 사라짐
 export const INTRO_FPS = 24;
-export const INTRO_SEC = 1.6; // 인트로 길이(본편 첫 컷과 마지막 0.4초 겹침)
+export const INTRO_SEC = 2.6; // 인트로 길이(대표 요청 2026-11-28: 1초 더 길게). 마지막 0.4초는 본편 첫 컷과 겹침
 const F = (sec: number) => Math.round(sec * INTRO_FPS);
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
@@ -84,12 +84,12 @@ export const Intro: React.FC<{title: string; seal: string}> = ({title, seal}) =>
       <AbsoluteFill style={{transform: `translate(${sx}px, ${sy}px)`}}>
         <Img src={staticFile('intro/hanji.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.04)'}} />
         {/* 먹 번짐 그림자 */}
-        <div style={{position: 'absolute', left: 0, right: 0, top: 640, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 330,
+        <div style={{position: 'absolute', left: 0, right: 0, top: 470, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 430, lineHeight: 1.0, whiteSpace: 'pre-line',
           color: 'rgba(40,28,18,0.22)', filter: 'blur(10px)', opacity: tOp, transform: `scale(${sc * 1.02})`}}>{title}</div>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 640, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 330,
+        <div style={{position: 'absolute', left: 0, right: 0, top: 470, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 430, lineHeight: 1.0, whiteSpace: 'pre-line',
           color: '#1B1410', letterSpacing: -4, opacity: tOp, transform: `scale(${sc})`, textShadow: '0 2px 1px rgba(0,0,0,0.25)'}}>{title}</div>
         {/* 직인: 제목 오른쪽 아래 */}
-        <div style={{position: 'absolute', left: 846, top: 1030, width: 140, height: 140, opacity: sOp * 0.93,
+        <div style={{position: 'absolute', left: 790, top: 1330, width: 150, height: 150, opacity: sOp * 0.93,
           transform: `scale(${sSc}) rotate(-4deg)`, background: '#B0301F', borderRadius: 10,
           boxShadow: 'inset 0 0 0 7px #B0301F, inset 0 0 0 11px rgba(246,232,210,0.85)',
           display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -104,16 +104,16 @@ export const Intro: React.FC<{title: string; seal: string}> = ({title, seal}) =>
   );
 };
 
-// 시안 확인용: 인트로 → 본편 첫 컷(B01)으로 넘어가는 3초
+// 시안 확인용: 인트로 → 본편 첫 컷(B01)으로 넘어가는 4초
 export const IntroPreview: React.FC = () => {
   const f = useCurrentFrame();
-  const z = interpolate(f, [0, F(3)], [1.08, 1.0], clamp);
+  const z = interpolate(f, [0, F(4)], [1.08, 1.0], clamp);
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <AbsoluteFill style={{transform: `scale(${z})`}}>
         <Img src={staticFile('b/B01.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
       </AbsoluteFill>
-      <Sequence durationInFrames={F(INTRO_SEC)}><Intro title="콩쥐팥쥐뎐" seal="엇" /></Sequence>
+      <Sequence durationInFrames={F(INTRO_SEC)}><Intro title={"콩쥐\n팥쥐뎐"} seal="엇" /></Sequence>
     </AbsoluteFill>
   );
 };

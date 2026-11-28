@@ -12,7 +12,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="Ep01" component={Shorts} durationInFrames={totalFrames} fps={FPS} width={1080} height={1920} />
       <Composition id="Sample" component={Sample} durationInFrames={1} fps={24} width={1080} height={1920} defaultProps={{style: 'A', scene: 0}} />
       <Composition id="B1" component={B1} durationInFrames={b1Frames} fps={24} width={1080} height={1920} />
-      <Composition id="IntroPreview" component={IntroPreview} durationInFrames={72} fps={24} width={1080} height={1920} />
+      <Composition id="IntroPreview" component={IntroPreview} durationInFrames={96} fps={24} width={1080} height={1920} />
     </>
   );
 };
