@@ -39,8 +39,8 @@ export const shots: Shot[] = [
   {img: 'v2/N12', sec: 2.2, origin: '45% 45%', tag: {text: '팥쥐', x: 56, y: 30}, caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마! 우리 집 독', '다 금 갔잖아! 빨리 와!'], y: 1760}]},
   {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['실금 찾는 건,', '우리가 제일 잘하지.'], y: TOP}]},
   {img: 'v2/N14', sec: 3.5, origin: '45% 50%', caps: [{at: 0.2, dur: 1.2, name: '콩쥐', lines: ['다음 분~'], y: 1780}, {at: 1.5, dur: 1.9, name: '콩쥐', lines: ['이 금… 다 어머니 솜씨죠?'], y: 1780}]},
-  {img: 'v2/N16', sec: 2.4, origin: '45% 45%', tag: {text: '호객 담당 팥쥐', x: 52, y: 31}, caps: [{at: 0.2, dur: 2.1, name: '팥쥐', lines: ['금 안 가는 독', '있어요~!'], y: 1720}]},
-  {img: 'v2/N15', sec: 3.6, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.0, name: '면접관 계모', lines: ['실금 하나 못 잡으면…', '탈락!'], y: 330}]},
+  {img: 'v2/N15', sec: 4.5, origin: '45% 50%', sfx: 'intro/crack.wav', caps: [{at: 0.5, dur: 3.8, name: '면접관 계모', lines: ['실금 하나 못 잡으면…', '탈락!'], y: 330}]},
+  {img: 'v2/N16', sec: 2.3, origin: '45% 45%', tag: {text: '호객 담당 팥쥐', x: 52, y: 31}, caps: [{at: 0.2, dur: 2.1, name: '팥쥐', lines: ['금 안 가는 독', '있어요~!'], y: 1720}]},
 ];
 const END = 1.6;
 
