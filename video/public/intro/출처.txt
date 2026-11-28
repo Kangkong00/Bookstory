@@ -1,0 +1,2 @@
+EastSeaDokdo-Regular.ttf: Google Fonts, SIL Open Font License 1.1 (https://github.com/google/fonts/tree/main/ofl/eastseadokdo)
+hanji.jpg, gong.wav, stamp.wav: 코드로 직접 생성(저작권 문제 없음)
