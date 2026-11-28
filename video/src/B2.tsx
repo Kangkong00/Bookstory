@@ -1,6 +1,7 @@
 import {AbsoluteFill, Audio, Img, Sequence, staticFile, interpolate, useCurrentFrame, delayRender, continueRender, Easing} from 'remotion';
 import {useEffect, useState} from 'react';
 import {Intro, INTRO_SEC} from './Intro';
+import {random} from 'remotion';
 
 // 1화 「콩쥐팥쥐뎐」 v2(두꺼비 근무 일지) 사진 가편집. 비트 시트: plan/ep01_비트시트_v2.md (v2.1)
 export const FPS = 24;
@@ -8,35 +9,35 @@ const XF = 6; // 컷 사이 겹침(프레임)
 const s = (sec: number) => Math.round(sec * FPS);
 
 type Cap = {at: number; dur: number; lines: string[]; name?: string; big?: boolean; y?: number};
-type Shot = {img: string; sec: number; zoom?: [number, number]; origin?: string; sat?: [number, number]; tag?: {text: string; x: number; y: number}; caps: Cap[]; pan?: boolean; sfx?: string};
+type Shot = {img: string; sec: number; zoom?: [number, number]; origin?: string; sat?: [number, number]; tag?: {text: string; x: number; y: number}; caps: Cap[]; pan?: boolean; sfx?: string; snow?: boolean};
 
 const TOP = 330; // 그림 아래쪽에 주인공이 있을 때 자막을 위로
 export const shots: Shot[] = [
   // 기: 원작 그대로
   {img: 'b/B01', sec: 3.0, origin: '60% 55%', tag: {text: '콩쥐', x: 64, y: 20}, caps: [{at: 0.5, dur: 2.45, lines: ['그 독 밑 두꺼비는,', '그 뒤로 어떻게 됐을까?']}]},
   {img: 'b/B02', sec: 3.2, origin: '35% 70%', tag: {text: '두꺼비', x: 37, y: 60}, caps: [{at: 0.2, dur: 2.9, lines: ['밑 빠진 독엔 두꺼비가,'], y: TOP}]},
-  {img: 'b/B03', sec: 3.0, origin: '50% 75%', caps: [{at: 0.2, dur: 2.7, lines: ['벼 한 섬엔 참새가,']}]},
-  {img: 'b/B04', sec: 3.0, origin: '35% 55%', caps: [{at: 0.2, dur: 2.7, lines: ['돌밭엔 검은 소가.']}]},
+  {img: 'b/B03', sec: 2.2, origin: '50% 75%', caps: [{at: 0.15, dur: 2.0, lines: ['벼 한 섬엔 참새가,']}]},
+  {img: 'b/B04', sec: 2.2, origin: '35% 55%', caps: [{at: 0.15, dur: 2.0, lines: ['돌밭엔 검은 소가.']}]},
   // 승: 두꺼비 시점으로 비틀기 시작
   {img: 'b/B02', sec: 3.0, zoom: [1.55, 1.7], origin: '37% 72%', caps: [{at: 0.2, dur: 2.7, name: '두꺼비', lines: ['그 두꺼비, 나다.', '직업은 구멍 메우기.'], y: TOP}]},
-  {img: 'b/B05', sec: 3.0, origin: '60% 50%', tag: {text: '팥쥐', x: 59, y: 38}, caps: [{at: 0.4, dur: 2.5, name: '팥쥐', lines: ['엄마! 언니 두꺼비 써!']}]},
+  {img: 'b/B05', sec: 3.0, zoom: [1.9, 2.0], origin: '74% 52%', tag: {text: '팥쥐', x: 48, y: 22}, caps: [{at: 0.4, dur: 2.5, name: '팥쥐', lines: ['엄마! 두꺼비가', '언니 일 다 해 줘!']}]},
   {img: 'v2/N01', sec: 3.4, zoom: [1.25, 1.35], origin: '55% 22%', tag: {text: '계모', x: 52, y: 7}, caps: [{at: 0.5, dur: 2.8, name: '계모', lines: ['오호?', '그렇단 말이지?']}]},
   {img: 'v2/N02', sec: 3.0, origin: '45% 50%', caps: [{at: 0.3, dur: 2.6, name: '계모', lines: ['어디까지 고치나 보자.'], y: 1720}]},
   // 전
   {img: 'v2/N03', sec: 3.0, zoom: [1.0, 1.1], origin: '50% 70%', caps: [{at: 0.6, dur: 2.3, name: '두꺼비', lines: ['…셋?'], big: true, y: TOP}]},
   {img: 'v2/N04', sec: 3.4, caps: [{at: 0.3, dur: 3.0, name: '두꺼비', lines: ['사촌, 육촌까지 불렀다.'], y: TOP}]},
-  {img: 'v2/N05', sec: 3.4, origin: '55% 40%', caps: [{at: 0.3, dur: 3.0, name: '두꺼비', lines: ['금 간 데는,', '두드려 보면 안다.']}]},
+  {img: 'v2/N05', sec: 3.4, origin: '55% 40%', caps: [{at: 0.3, dur: 3.0, name: '두꺼비', lines: ['톡톡…', '여기 금 갔네.']}]},
   // 감정의 바닥
-  {img: 'v2/N06', sec: 4.0, zoom: [1.0, 1.12], origin: '50% 72%', sat: [1.0, 0.75], caps: [{at: 1.2, dur: 2.6, name: '두꺼비', lines: ['…춥다.'], y: TOP}]},
+  {img: 'v2/N06', sec: 2.8, zoom: [1.0, 1.1], origin: '50% 72%', sat: [1.0, 0.75], snow: true, caps: [{at: 0.4, dur: 2.3, name: '두꺼비', lines: ['겨울에도…', '퇴근이 없다.'], y: TOP}]},
   {img: 'v2/N07', sec: 3.0, zoom: [1.05, 1.15], origin: '50% 45%', caps: []},
   // 결심(모든 편 공통 장면)
   {img: 'v2/N08', sec: 1.8, zoom: [1.1, 1.2], origin: '60% 40%', caps: [], sfx: 'intro/ting.wav'},
-  {img: 'v2/N09', sec: 3.0, zoom: [1.12, 1.0], origin: '50% 40%', caps: [{at: 0.5, dur: 2.4, name: '콩쥐', lines: ['구멍 없는 독,', '우리가 만들자.'], y: 1680}]},
+  {img: 'v2/N09', sec: 3.0, zoom: [1.12, 1.0], origin: '50% 40%', caps: [{at: 0.5, dur: 2.4, name: '콩쥐', lines: ['그냥 우리가', '독을 만들면 되잖아!'], y: 1680}]},
   // 결
   {img: 'v2/N10', sec: 1.6, zoom: [1.3, 1.36], origin: '35% 80%', caps: [{at: 0.05, dur: 1.5, lines: ['반년 후'], y: TOP}]},
   {img: 'v2/N11', sec: 4.0, pan: true, caps: []},
   {img: 'v2/N12', sec: 2.2, origin: '45% 45%', caps: [{at: 0.1, dur: 2.0, name: '팥쥐', lines: ['엄마, 빨리 와!', '줄 길어져!']}]},
-  {img: 'v2/N13', sec: 2.2, zoom: [1.22, 1.28], origin: '70% 40%', caps: []},
+  {img: 'v2/N13', sec: 2.4, zoom: [1.22, 1.28], origin: '70% 40%', caps: [{at: 0.2, dur: 2.1, name: '두꺼비', lines: ['금 잡는 건,', '우리 담당.'], y: TOP}]},
   {img: 'v2/N14', sec: 2.8, origin: '45% 50%', caps: [{at: 0.5, dur: 2.2, name: '콩쥐', lines: ['다음 분~']}]},
 ];
 const END = 1.6;
@@ -132,6 +133,23 @@ const Pan: React.FC<{sh: Shot; len: number}> = ({sh, len}) => {
   );
 };
 
+// 내리는 눈(정지 사진에 움직임을 줌)
+const Snow: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{pointerEvents: 'none'}}>
+      {new Array(90).fill(0).map((_, i) => {
+        const x0 = random(`sx${i}`) * 1080;
+        const sp = 2.2 + random(`sv${i}`) * 3.5;
+        const r = 3 + random(`sr${i}`) * 6;
+        const y = (random(`sy${i}`) * 2100 + f * sp) % 2100 - 90;
+        const x = x0 + Math.sin((f + i * 13) / 18) * 14;
+        return <div key={i} style={{position: 'absolute', left: x, top: y, width: r, height: r, borderRadius: '50%', background: 'rgba(255,255,255,0.85)', filter: 'blur(0.6px)'}} />;
+      })}
+    </AbsoluteFill>
+  );
+};
+
 const End: React.FC = () => {
   const f = useCurrentFrame();
   const a = (d: number) => interpolate(f - d, [0, 10], [0, 1], clamp);
@@ -155,6 +173,7 @@ export const B2: React.FC = () => {
       {shots.map((sh, i) => (
         <Sequence key={i} from={starts[i]} durationInFrames={s(sh.sec)}>
           {sh.pan ? <Pan sh={sh} len={s(sh.sec)} /> : <Still sh={sh} len={s(sh.sec)} />}
+          {sh.snow && <Snow />}
           {sh.tag && <Tag {...sh.tag} len={s(Math.min(2.2, sh.sec))} />}
           {sh.caps.map((c, k) => (
             <Sequence key={k} from={s(c.at)} durationInFrames={s(c.dur)}>

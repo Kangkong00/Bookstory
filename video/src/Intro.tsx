@@ -78,6 +78,8 @@ export const Intro: React.FC<{title: string; seal: string}> = ({title, seal}) =>
   const sOp = interpolate(f, [sealAt - 3, sealAt - 1], [0, 1], clamp);
   // 전체 페이드 아웃
   const allOp = interpolate(f, [out, F(INTRO_SEC)], [1, 0], clamp);
+  // 글자와 직인은 배경보다 먼저 사라져, 다음 장면 위에 글자가 겹쳐 남지 않게
+  const inkOut = interpolate(f, [out - F(0.25), out], [1, 0], clamp);
 
   return (
     <AbsoluteFill style={{opacity: allOp}}>
@@ -85,11 +87,11 @@ export const Intro: React.FC<{title: string; seal: string}> = ({title, seal}) =>
         <Img src={staticFile('intro/hanji.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.04)'}} />
         {/* 먹 번짐 그림자 */}
         <div style={{position: 'absolute', left: 0, right: 0, top: 470, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 430, lineHeight: 1.0, whiteSpace: 'pre-line',
-          color: 'rgba(40,28,18,0.22)', filter: 'blur(10px)', opacity: tOp, transform: `scale(${sc * 1.02})`}}>{title}</div>
+          color: 'rgba(40,28,18,0.22)', filter: 'blur(10px)', opacity: tOp * inkOut, transform: `scale(${sc * 1.02})`}}>{title}</div>
         <div style={{position: 'absolute', left: 0, right: 0, top: 470, textAlign: 'center', fontFamily: 'IntroBrush', fontSize: 430, lineHeight: 1.0, whiteSpace: 'pre-line',
-          color: '#1B1410', letterSpacing: -4, opacity: tOp, transform: `scale(${sc})`, textShadow: '0 2px 1px rgba(0,0,0,0.25)'}}>{title}</div>
+          color: '#1B1410', letterSpacing: -4, opacity: tOp * inkOut, transform: `scale(${sc})`, textShadow: '0 2px 1px rgba(0,0,0,0.25)'}}>{title}</div>
         {/* 직인: 제목 오른쪽 아래 */}
-        <div style={{position: 'absolute', left: 790, top: 1330, width: 150, height: 150, opacity: sOp * 0.93,
+        <div style={{position: 'absolute', left: 790, top: 1330, width: 150, height: 150, opacity: sOp * 0.93 * inkOut,
           transform: `scale(${sSc}) rotate(-4deg)`, background: '#B0301F', borderRadius: 10,
           boxShadow: 'inset 0 0 0 7px #B0301F, inset 0 0 0 11px rgba(246,232,210,0.85)',
           display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
